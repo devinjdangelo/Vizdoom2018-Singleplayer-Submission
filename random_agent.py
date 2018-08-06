@@ -71,7 +71,7 @@ def run_game():
         # print(s)
         vz_action,_,_,_ = agent.choose_action(f,m,abuffer,0,False,weapon)
         # Make your action.
-        game.make_action(vz_action)
+        game.make_action(vz_action,4)
         abuffer = vz_action
 
         # Log time and frags/kills every ~10 seconds
