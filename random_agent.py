@@ -23,7 +23,7 @@ DEFAULT_WAD_FILE = "mock.wad"
 def run_game():
     agent = DoomAgent(args)
     game = vzd.DoomGame()
-    game.load_config("config/custom_config.cfg")
+    game.load_config("config/doom2.cfg")
     # and select color
     # colors: 0 - green, 1 - gray, 2 - brown, 3 - red, 4 - light gray, 5 - light brown, 6 - light red, 7 - light blue
     color = 0
@@ -63,7 +63,7 @@ def run_game():
         
         # Analyze the state ... or not
         s = game.get_state()
-        m, weapon = process_game_vars(state.game_variables)
+        m, weapon = process_game_vars(s.game_variables)
         f = s.screen_buffer
         f = f[:-80,:,:] #crop out the HUD
         f = skimage.transform.resize(f,(128,128,3))
@@ -84,19 +84,19 @@ def run_game():
     print("Episode FINISHED !")
     game.close()
     
-def process_game_vars(self,m_raw):
+def process_game_vars(m_raw):
     
     selected_weapon = m_raw[1]
     
-    fist_active = 1 if self.selected_weapon==1 else 0
-    pistol_active = 1 if self.selected_weapon==2 else 0
-    shotgun_active = 1 if self.selected_weapon==3 else 0
-    chaingun_active = 1 if self.selected_weapon==4 else 0
-    rocket_active = 1 if self.selected_weapon==5 else 0
-    plasma_active = 1 if self.selected_weapon==6 else 0
-    bfg_active = 1 if self.selected_weapon==7 else 0
-    super_active = 1 if self.selected_weapon==8 else 0
-    chainsaw_active = 1 if self.selected_weapon==9 else 0
+    fist_active = 1 if selected_weapon==1 else 0
+    pistol_active = 1 if selected_weapon==2 else 0
+    shotgun_active = 1 if selected_weapon==3 else 0
+    chaingun_active = 1 if selected_weapon==4 else 0
+    rocket_active = 1 if selected_weapon==5 else 0
+    plasma_active = 1 if selected_weapon==6 else 0
+    bfg_active = 1 if selected_weapon==7 else 0
+    super_active = 1 if selected_weapon==8 else 0
+    chainsaw_active = 1 if selected_weapon==9 else 0
 
     #weap1 = 0 if fist only and =1 if fist and chainsaw
     has_fist = 1 if m_raw[10]>0 else 0
